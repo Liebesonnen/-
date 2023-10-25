@@ -1,0 +1,16 @@
+import win32gui,win32api,win32con,win32ui
+
+
+hd = win32gui.GetDesktopWindow()
+print("桌面句柄",hd)
+
+hwndChildList = []
+win32gui.EnumChildWindows(hd, lambda hwnd, param: param.append(hwnd), hwndChildList)
+
+hWnd = 0
+for hwnd in hwndChildList:
+    # print(hwnd,win32gui.GetWindowText(hwnd))，先运行这段，把窗口名称和句柄显示
+    if win32gui.GetWindowText(hwnd) == "窗口名称":
+        print("游戏窗口句柄：",hwnd)
+        hWnd = hwnd
+        break
